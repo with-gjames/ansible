@@ -1,0 +1,4 @@
+PORT NAME:       MAC:       DESC
+{% for key,value in ansible_net_interfaces.iteritems() %}
+{{  key }}       {{ value.macaddress }}     {{ value.description }}
+{{ endfor }}

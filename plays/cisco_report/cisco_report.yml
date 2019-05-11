@@ -1,0 +1,18 @@
+---
+- name: CISCO REPORT
+  hosts: inventory
+  connection: network_cli
+  gather_facts: no
+
+  tasks: 
+     
+    - name: GATHER ROUTER FACTS
+      ios_facts:
+    
+    - namme: OUTPUT REPORT
+      template:
+        src: template/report.j2
+        dest: output/report.md
+
+
+
