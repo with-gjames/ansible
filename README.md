@@ -37,12 +37,13 @@ md reports can be displayed in a wiki or other wegpage to aid in troubleshooting
 
 
 
-    We can parse the output with split()    "{{ trunk_ports.stdout_lines[0] }} will convert the output into lines.  Each line is procssed individually.
+    We can parse the output with split() 
+    "{{ trunk_ports.stdout_lines[0] }} will convert the output into lines.  Each line is procssed individually.
     Split will parse the line into tokens.  We want the first token, so we referenece it with split()[0]  
     And because we want to remain idempotent, we convert the Gi or Fa into the full interface name with a regex
 
 
-                - name: ADD AUTO QOS TO TRUNK PORTS
+              `  - name: ADD AUTO QOS TO TRUNK PORTS
                 ios_config:
                     lines:
                     - auto qos trust dscp
@@ -51,9 +52,10 @@ md reports can be displayed in a wiki or other wegpage to aid in troubleshooting
                             regex_replace('^Fa','FastEthernet') }}
                             # Full interface names must be used for idempotency
                             # Add more regex lines for your other interface types
-                with_items: "{{ trunk_ports.stdout_lines[0] }}"
+                with_items: "{{ trunk_ports.stdout_lines[0] }}" `
                 
 
+You will have to get creative with your show commands to get the output formatted into the table form above, but as long as you can do that, the output can parsed in any way.
 
 ## Authors
 
