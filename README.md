@@ -11,7 +11,7 @@ In learning Ansible I have come across a few problems that are not well document
      {{  key }},{{ value.macaddress }},{{ value.description }}
      {{ endfor }}
 
-md reports can be displayed in a wiki or other webpage to aid in troubleshooting.  CSV files can be used in auditing or in conjunction with a config generator.   
+md reports can be displayed in a wiki or other web page to aid in troubleshooting.  CSV files can be used in auditing or in conjunction with a config generator.   
 
 ## Parse SHOW command for Interface names
  
