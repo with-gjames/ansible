@@ -15,7 +15,7 @@ md reports can be displayed in a wiki or other wegpage to aid in troubleshooting
 
 ## Parse SHOW command for Interface names
  
-  It is often necessary to update an unknown interfaces on a Cisco switch or router with a new command based on some criteria, such as "all trunk ports" or "all interfaces with "WAN" in the description.   You could put all the interface names into global vars and iterate through them, but that is time consuming and prone to error.   It would be better if we could take the output of a SHOW command that displays our target interface names, and then iterate through those.  
+  It is often necessary to update an unknown interfaces on a Cisco switch or router with a new command based on some criteria, such as "all trunk ports" or "all interfaces with 'WAN' in the description".   You could put all the interface names into global vars and iterate through them, but that is time consuming and prone to error.   It would be better if we could take the output of a SHOW command that displays our target interface names, and then iterate through those.  
 
   For example, given the output of show interface status | include ^[Gi|Fa].*trunk
 
@@ -32,7 +32,7 @@ Gi5/2                      notconnect   trunk            auto   auto 10/100/1000
 - name:  LIST TRUNK PORTS
     ios_command:
     commands:
-        - show interface status | include trunk
+        - show interface status | include ^[Gi|Fa].*trunk
     register: trunk_ports          
 ~~~~
 
