@@ -11,7 +11,7 @@ In learning Ansible I have come across a few problems that are not well document
      {{  key }},{{ value.macaddress }},{{ value.description }}
      {{ endfor }}
 
-md reports can be displayed in a wiki or other wegpage to aid in troubleshooting.  CSV files can be used in auditing or in conjunction with a config generator.   
+md reports can be displayed in a wiki or other webpage to aid in troubleshooting.  CSV files can be used in auditing or in conjunction with a config generator.   
 
 ## Parse SHOW command for Interface names
  
@@ -40,7 +40,7 @@ Gi5/2                      notconnect   trunk            auto   auto 10/100/1000
 
 We can parse the output with split()  
 {{ trunk_ports.stdout_lines[0] }} will convert the output into lines.  Each line is procssed individually.  
-Split will then parse the line into tokens.  We want the first token, so we referenece it with split()[0]    
+Split will then parse the line into tokens.  We want the first token, so we reference it with split()[0]    
 And because we want to remain idempotent, we convert the Gi or Fa into the full interface name with a regex  
 
 
@@ -57,7 +57,7 @@ ios_config:
 with_items: "{{ trunk_ports.stdout_lines[0] }}" `
 ~~~~   
 
-You will have to get creative with your show commands to get the output formatted into the table form above, but as long as you can do that, the output can parsed in any way.
+You will have to get creative with your show commands to get the output formatted into the table form above, but as long as you can do that, the output can be parsed in any way.
 
 ## Authors
 
