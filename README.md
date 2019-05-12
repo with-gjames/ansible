@@ -19,21 +19,22 @@ md reports can be displayed in a wiki or other wegpage to aid in troubleshooting
 
   For example, given the output of show interface status | include ^[Gi|Fa].*trunk
 
+           ~~~~
                     Switch#show interfaces status | include ^[Gi|Fa].*trunk
                     Gi1/2                      notconnect   trunk            auto   auto No Gbic
                     Gi5/1                      notconnect   trunk            auto   auto 10/100/1000-TX
                     Gi5/2                      notconnect   trunk            auto   auto 10/100/1000-TX
-          
+          ~~~~
   
    In Ansible we register that output into a variable called trunk_ports
 
-           
+           ~~~~
                 - name:  LIST TRUNK PORTS
                   ios_command:
                     commands:
                         - show interface status | include trunk
                   register: trunk_ports          
- 
+           ~~~~
 
 
 
@@ -43,7 +44,8 @@ md reports can be displayed in a wiki or other wegpage to aid in troubleshooting
     And because we want to remain idempotent, we convert the Gi or Fa into the full interface name with a regex
 
 
-              `  - name: ADD AUTO QOS TO TRUNK PORTS
+             ~~~~
+               - name: ADD AUTO QOS TO TRUNK PORTS
                 ios_config:
                     lines:
                     - auto qos trust dscp
@@ -53,7 +55,7 @@ md reports can be displayed in a wiki or other wegpage to aid in troubleshooting
                             # Full interface names must be used for idempotency
                             # Add more regex lines for your other interface types
                 with_items: "{{ trunk_ports.stdout_lines[0] }}" `
-                
+             ~~~~   
 
 You will have to get creative with your show commands to get the output formatted into the table form above, but as long as you can do that, the output can parsed in any way.
 
