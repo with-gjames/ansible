@@ -19,12 +19,12 @@ md reports can be displayed in a wiki or other wegpage to aid in troubleshooting
 
   For example, given the output of show interface status | include ^[Gi|Fa].*trunk
 
-           ~~~~
-                    Switch#show interfaces status | include ^[Gi|Fa].*trunk
-                    Gi1/2                      notconnect   trunk            auto   auto No Gbic
-                    Gi5/1                      notconnect   trunk            auto   auto 10/100/1000-TX
-                    Gi5/2                      notconnect   trunk            auto   auto 10/100/1000-TX
-          ~~~~
+~~~~
+Switch#show interfaces status | include ^[Gi|Fa].*trunk
+Gi1/2                      notconnect   trunk            auto   auto No Gbic
+Gi5/1                      notconnect   trunk            auto   auto 10/100/1000-TX
+Gi5/2                      notconnect   trunk            auto   auto 10/100/1000-TX
+~~~~
   
    In Ansible we register that output into a variable called trunk_ports
 
