@@ -7,9 +7,9 @@
 
   We use .iteritems() to iterate through each interface in the ansible_net_interfaces dictionary.  {{ key }} is the name of the interface.  
 
-`{% for key,value in ansible_net_interfaces.iteritems() %}
-{{  key }},{{ value.macaddress }},{{ value.description }}
-{{ endfor }}`
+    `{% for key,value in ansible_net_interfaces.iteritems() %}
+     {{  key }},{{ value.macaddress }},{{ value.description }}
+     {{ endfor }}`
 
 md reports can be displayed in a wiki or other wegpage to aid in troubleshooting.  CSV files can be used in auditing or in conjunction with a config generator.   
 
