@@ -17,7 +17,7 @@ md reports can be displayed in a wiki or other wegpage to aid in troubleshooting
  
   It is often necessary to update an unknown interfaces on a Cisco switch or router with a new command based on some criteria, such as "all trunk ports" or "all interfaces with "WAN" in the description.   You could put all the interface names into global vars and iterate through them, but that is time consuming and prone to error.   It would be better if we could take the output of a SHOW command that displays our target interface names, and then iterate through those.  
 
-  For examppe, given the output of show interface status | include ^[Gi|Fa].*trunk
+  For example, given the output of show interface status | include ^[Gi|Fa].*trunk
 
                     Switch#show interfaces status | include ^[Gi|Fa].*trunk
                     Gi1/2                      notconnect   trunk            auto   auto No Gbic
@@ -32,13 +32,15 @@ md reports can be displayed in a wiki or other wegpage to aid in troubleshooting
                   ios_command:
                     commands:
                         - show interface status | include trunk
-                  register: trunk_ports           
+                  register: trunk_ports          
+ 
 
 
 
     We can parse the output with split()    "{{ trunk_ports.stdout_lines[0] }} will convert the output into lines.  Each line is procssed individually.
     Split will parse the line into tokens.  We want the first token, so we referenece it with split()[0]  
     And because we want to remain idempotent, we convert the Gi or Fa into the full interface name with a regex
+
 
                 - name: ADD AUTO QOS TO TRUNK PORTS
                 ios_config:
