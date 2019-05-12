@@ -11,8 +11,7 @@
     
     - namme: OUTPUT REPORT
       template:
-        src: template/report.j2
+        src: templates/report.j2
         dest: output/report.md
-
 
 

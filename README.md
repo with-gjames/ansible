@@ -38,10 +38,10 @@ Gi5/2                      notconnect   trunk            auto   auto 10/100/1000
 
 
 
-    We can parse the output with split() 
-    "{{ trunk_ports.stdout_lines[0] }} will convert the output into lines.  Each line is procssed individually.
-    Split will parse the line into tokens.  We want the first token, so we referenece it with split()[0]  
-    And because we want to remain idempotent, we convert the Gi or Fa into the full interface name with a regex
+We can parse the output with split() 
+"{{ trunk_ports.stdout_lines[0] }} will convert the output into lines.  Each line is procssed individually.
+Split will parse the line into tokens.  We want the first token, so we referenece it with split()[0]  
+And because we want to remain idempotent, we convert the Gi or Fa into the full interface name with a regex
 
 
 ~~~~
