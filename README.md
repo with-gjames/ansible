@@ -5,6 +5,10 @@ In learning Ansible I have come across a few problems that are not well document
 ## Basic Cisco Report
   We can use ios_facts to generate an interface report from a Cisco Router or Switch.  Reports are output into markdown (md) and CSV.   The reports can easily be modified with any data pulled from ios_facts based on user need.   
 
+
+
+
+
   In our jina2 template, we use .iteritems() to iterate through each interface in the ansible_net_interfaces dictionary.  {{ key }} is the name of the interface.  
 
 ~~~~
@@ -18,7 +22,7 @@ md reports can be displayed in a wiki or other web page to aid in troubleshootin
 
 ## Parse SHOW command for Interface names
  
-  It is often necessary to update an unknown interfaces on a Cisco switch or router with a new command based on some criteria, such as "all trunk ports" or "all interfaces with 'WAN' in the description".   You could put all the interface names into global vars and iterate through them, but that is time consuming and prone to error.   It would be better if we could take the output of a SHOW command that displays our target interface names, and then iterate through those.  
+  It is often necessary to update unknown interfaces on a Cisco switch or router with a new command based on some criteria, such as "all trunk ports" or "all interfaces with 'WAN' in the description".   You could put all the interface names into global vars and iterate through them, but that is time consuming and prone to error.   It would be better if we could take the output of a SHOW command that displays our target interface names, and then iterate through those.  
 
   For example, given the output of show interface status | include ^[Gi|Fa].*trunk
 
@@ -44,7 +48,7 @@ Gi5/2                      notconnect   trunk            auto   auto 10/100/1000
 We can parse the output with split()  
 {{ trunk_ports.stdout_lines[0] }} will convert the output into lines.  Each line is procssed individually.  
 Split will then parse the line into tokens.  We want the first token, so we reference it with split()[0]    
-And because we want to remain idempotent, we convert the Gi or Fa into the full interface name with a regex  
+And because we want to remain idempotent, we convert the Gi or Fa into the full interface name with a regex_replace.
 
 
 ~~~~
